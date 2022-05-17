@@ -58,6 +58,7 @@ class Admin(commands.Cog):
                 cogs.append(filename)
         await ctx.send(f"Found the following cogs: {str(cogs)[1:-1]}")
 
+
 async def setup(bot):
     # take name of class, pass in the bot
     await bot.add_cog(Admin(bot))

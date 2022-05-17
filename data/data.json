@@ -1,0 +1,15 @@
+
+{
+    "anime": [
+        {
+            "entryID": 1,
+            "title": "korra",
+            "episode": 1,
+            "watch": "https://9anime.id/watch/avatar-the-legend-of-korra-dub.l6o6/ep-1",
+            "mal": ""
+
+        }
+    ],
+    "entryIDCount": 1,
+    "animeVals": ["entryID", "title", "episode", "watch", "mal"]
+}
