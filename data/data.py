@@ -122,9 +122,10 @@ class Data:
         with open(Data.__data, "r+") as file:
             data = json.load(file)
             for i in data["anime"]:
+                print(data["anime"])
                 if i["entryID"] == anime.getEntryID():
                     print(i)
-                    data.pop(i)
+                    data["anime"].remove(i)
                     file.seek(0)
                     json.dump(data, file, indent=4)
                     file.truncate()
