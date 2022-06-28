@@ -48,20 +48,40 @@ class Data:
     __data = "data/data.json"
 
     @staticmethod
-    def getAnime(entryID: int):
+    def getAnimeWithID(entryID: int):
+        """Return an Anime object matching the entryID
+        Returns None if no result found"""
         anime = {}
         with open(Data.__data, "r+") as file:
             data = json.load(file)
             for i in data["anime"]:
                 if i["entryID"] == entryID:
-                    anime["entryID"] = entryID
                     for x in data["animeVals"]:
                         anime[x] = i[x]
                     file.seek(0)
                     json.dump(data, file, indent=4)
                     file.truncate()
                     file.close()
-                    return
+                    return Anime(anime)
+        return
+
+    @staticmethod
+    def getAnimeWithTitle(title: str):
+        """Return an Anime object matching the entryID
+        Returns None if no result found"""
+        anime = {}
+        with open(Data.__data, "r+") as file:
+            data = json.load(file)
+            for i in data["anime"]:
+                if i["title"].lower() == title.lower():
+                    for x in data["animeVals"]:
+                        anime[x] = i[x]
+                    file.seek(0)
+                    json.dump(data, file, indent=4)
+                    file.truncate()
+                    file.close()
+                    return Anime(anime)
+        return
 
     @staticmethod
     def updateAnime(anime: Anime):
@@ -95,7 +115,7 @@ class Data:
             file.seek(0)
             json.dump(data, file, indent=4)
             file.truncate()
-            return
+            return Anime(anime)
 
     @staticmethod
     def delAnime(anime):

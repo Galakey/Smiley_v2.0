@@ -1,4 +1,3 @@
-
 {
     "anime": [
         {
@@ -7,7 +6,6 @@
             "episode": 1,
             "watch": "https://9anime.id/watch/avatar-the-legend-of-korra-dub.l6o6/ep-1",
             "mal": ""
-
         },
         {
             "entryID": 2,
@@ -15,9 +13,42 @@
             "episode": 1,
             "watch": "https://9anime.id/watch/avatar-the-last-airbender-dub.k1n4/ep-1",
             "mal": ""
-
+        },
+        {
+            "entryID": 3,
+            "title": "Love Live",
+            "episode": 1,
+            "watch": "",
+            "mal": ""
+        },
+        {
+            "entryID": 4,
+            "title": "Beastars",
+            "episode": 1,
+            "watch": "",
+            "mal": ""
+        },
+        {
+            "entryID": 5,
+            "title": "Test Show",
+            "episode": 5,
+            "watch": "",
+            "mal": "myanimelist.com"
+        },
+        {
+            "entryID": 6,
+            "title": "Hunter x Hunter",
+            "episode": 1,
+            "watch": "",
+            "mal": "https://myanimelist.net/anime/11061/Hunter_x_Hunter_2011"
         }
     ],
-    "entryIDCount": 1,
-    "animeVals": ["entryID", "title", "episode", "watch", "mal"]
+    "entryIDCount": 6,
+    "animeVals": [
+        "entryID",
+        "title",
+        "episode",
+        "watch",
+        "mal"
+    ]
 }
