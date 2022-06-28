@@ -40,6 +40,7 @@ class Smiley(commands.Bot):
                 await self.load_extension(f"cogs.{filename[:-3]}")
                 print(f"{filename} successfully loaded.")
 
+    """
     @bot.event
     async def on_command_error(self, ctx, error):
         if isinstance(error, commands.MissingRequiredArgument):
@@ -66,6 +67,7 @@ class Smiley(commands.Bot):
             await ctx.send("I do not have the role required for this command.")
         if isinstance(error, commands.BotMissingPermissions):
             await ctx.send("I do not have permission for this command")
+        """
 
     def run(self):
         super().run(self.discord_bot_token)

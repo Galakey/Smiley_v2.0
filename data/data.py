@@ -1,4 +1,6 @@
 import json
+
+
 class Anime:
     def __init__(self, anime):
         self.__entryID = anime["entryID"]
@@ -43,21 +45,28 @@ class Anime:
 
 
 class Data:
-    __data = "./data.json"
+    __data = "data/data.json"
 
-    def getAnime(self, entryID: int):
+    @staticmethod
+    def getAnime(entryID: int):
         anime = {}
-        with open(self.__data, "r+") as file:
+        with open(Data.__data, "r+") as file:
             data = json.load(file)
             for i in data["anime"]:
                 if i["entryID"] == entryID:
                     anime["entryID"] = entryID
                     for x in data["animeVals"]:
-                        #finish this :D
+                        anime[x] = i[x]
+                    file.seek(0)
+                    json.dump(data, file, indent=4)
+                    file.truncate()
+                    file.close()
+                    return
 
-    def updateAnime(self, anime: Anime):
+    @staticmethod
+    def updateAnime(anime: Anime):
         if anime == Anime:
-            with open(self.__data, "r+") as file:
+            with open(Data.__data, "r+") as file:
                 data = json.load(file)
                 for i in data["anime"]:
                     if i["entryID"] == anime.getEntryID():
@@ -69,10 +78,11 @@ class Data:
                         file.close()
                         return
 
-    def addAnime(self, title: str, episode: int, watch: str, mal: str):
+    @staticmethod
+    def addAnime(title: str, episode: int, watch: str, mal: str):
         # add more data validation for passed input
         anime = {}
-        with open(self.__data, "r+") as file:
+        with open(Data.__data, "r+") as file:
             data = json.load(file)
             data["entryIDCount"] += 1
             anime["entryID"] = data["entryIDCount"]
@@ -85,10 +95,12 @@ class Data:
             file.seek(0)
             json.dump(data, file, indent=4)
             file.truncate()
+            return
 
-    def delAnime(self, anime):
+    @staticmethod
+    def delAnime(anime):
         if anime == Anime:
-            with open(self.__data, "r+") as file:
+            with open(Data.__data, "r+") as file:
                 data = json.load(file)
                 for i in data["anime"]:
                     if i["entryID"] == anime.getEntryID():
@@ -99,3 +111,8 @@ class Data:
                         file.close()
                         return
 
+    @staticmethod
+    def listAnime():
+        with open(Data.__data, "r+") as file:
+            data = json.load(file)
+            return data
