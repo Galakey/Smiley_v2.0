@@ -61,6 +61,36 @@ class Animelist(commands.Cog):
             print(anime)
             await ctx.send(embed=self.animeEmbed(anime))
 
+    @commands.command(hidden=True, help="Add an anime to the list. Use '$' to split values.\n"
+                                        "**IF YOU SKIP A VALUE, ADD THE APPROPRIATE NUMBER OF '$'.\n"
+                                        "eg. 's.addanime Beastars$$$myanimelist.com/Beastars' would skip the episode number and watch link."
+                                        "Takes in a title, episode number, watch link and MAL link. "
+                                        "Only a title is required.")
+    async def delAnime(self, ctx, *, input):
+        try:
+            input = int(input)
+        except ValueError as e:
+            pass
+
+        if isinstance(input, int) is True:
+            anime = Data.getAnimeWithID(input)
+            if Data.getAnimeWithID(input) is not None:
+                if Data.delAnime(anime) is True:
+                    await ctx.send("Entry successfully deleted.")
+                else:
+                    await ctx.send("Error when deleting entry.")
+            else:
+                await ctx.send("Invalid entryID.")
+        else:
+            anime = Data.getAnimeWithTitle(input)
+            if Data.getAnimeWithTitle(input) is not None:
+                if Data.delAnime(anime) is True:
+                    await ctx.send("Entry successfully deleted.")
+                else:
+                    await ctx.send("Error when deleting entry.")
+            else:
+                await ctx.send("Invalid entryID.")
+
     def animeEmbed(self, anime):
         """The default embed design for an instance of a single anime."""
         embed = discord.Embed(title=f"{anime.getTitle()}",

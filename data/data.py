@@ -118,18 +118,19 @@ class Data:
             return Anime(anime)
 
     @staticmethod
-    def delAnime(anime):
-        if anime == Anime:
-            with open(Data.__data, "r+") as file:
-                data = json.load(file)
-                for i in data["anime"]:
-                    if i["entryID"] == anime.getEntryID():
-                        data.pop(i)
-                        file.seek(0)
-                        json.dump(data, file, indent=4)
-                        file.truncate()
-                        file.close()
-                        return
+    def delAnime(anime: Anime):
+        with open(Data.__data, "r+") as file:
+            data = json.load(file)
+            for i in data["anime"]:
+                if i["entryID"] == anime.getEntryID():
+                    print(i)
+                    data.pop(i)
+                    file.seek(0)
+                    json.dump(data, file, indent=4)
+                    file.truncate()
+                    file.close()
+                    return True
+        return False
 
     @staticmethod
     def listAnime():
